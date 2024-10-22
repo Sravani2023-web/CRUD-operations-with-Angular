@@ -1,0 +1,51 @@
+<div class="header">
+  <h2>Fruits</h2>
+  <button class="add-button" (click)="showAddForm = !showAddForm">
+    Add Item+
+  </button>
+</div>
+<div class="table-container">
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of items">
+      <td>{{ item.name }}</td>
+      <td>&#8377;{{ item.price }}</td>
+      <td>{{ item.quantity }}</td>
+      <td>
+        <button (click)="startEdit(item)" class="edit">Edit</button>
+        <button (click)="deleteItem(item.id)" class="delete">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div *ngIf="showAddForm" class="form-container">
+  <h2>Add New Item</h2>
+  <input [(ngModel)]="newItem.name" placeholder="Name" />
+  <input [(ngModel)]="newItem.price" placeholder="Price" type="number" />
+  <input [(ngModel)]="newItem.quantity" placeholder="Quantity" type="number" />
+  <button (click)="addItem()">Add Item</button>
+  <button (click)="showAddForm = false">Cancel</button>
+</div>
+
+<div *ngIf="editItem">
+  <h2>Edit Item</h2>
+  <input [(ngModel)]="editItem.name" placeholder="Name" />
+  <input [(ngModel)]="editItem.price" placeholder="Price" type="number" />
+  <input [(ngModel)]="editItem.quantity" placeholder="Quantity" type="number" />
+  <button (click)="updateItem()">Update Item</button>
+  <button (click)="cancelEdit()">Cancel</button>
+</div>
+
+
+
+
